@@ -54,31 +54,30 @@ class Particle {
 
    // methods (functions): particle's behaviors
    update() {
-    // this.x = this.x +10
     if (this.state == "line") {
-      this.x += 2; // Move horizontally to the right
-      if (this.x > width / 2) { // Transition to 'oval' state after crossing the screen center
+      this.x += 2;
+      if (this.x > width / 2) { 
         this.state = "oval";
       }
     }
     else if (this.state == "oval") {
-      this.x = this.ovalCenterX + this.ovalRadiusX * cos(this.angle);  // X position on the ellipse
-      this.y = this.ovalCenterY + this.ovalRadiusY * sin(this.angle);  // Y position on the ellipse
-      this.angle += 0.05; // Increment angle to move along the ellipse
+      this.x = this.ovalCenterX + this.ovalRadiusX * cos(this.angle) 
+      this.y = this.ovalCenterY + this.ovalRadiusY * sin(this.angle)
+      this.angle += 0.05; 
     
-      if (this.angle > TWO_PI) { // Complete a full loop
-        this.state = "offCanvas"; // Transition to offCanvas state
-        this.angle = 0;
+      if (this.angle > TWO_PI) {
+        this.state = "offCanvas"
+        this.angle = 0
       }
     }
     else if (this.state == "offCanvas") {
-      this.x += 4;  // Move horizontally to the right
-      this.y += 2;  // Move vertically down
+      this.x += 4 
+      this.y += 2 
     
-      if (this.x > width) { // Reset when off screen
-        this.state = "line"; // Reset to 'line' state
-        this.x = random(-200, 0); // New random starting position off the left edge
-        this.y = random(200, 300); // Random vertical position
+      if (this.x > width) { 
+        this.state = "line"
+        this.x = random(-200, 0)
+        this.y = random(200, 300)
       }
     }
     
