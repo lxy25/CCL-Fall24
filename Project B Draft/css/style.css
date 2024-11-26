@@ -1,0 +1,107 @@
+body,
+
+#title {
+  font-family: "Licorice", cursive;
+  font-weight: 10;
+  font-style: normal;
+  font-size: 2em;
+  /* background-color: coral; */
+  text-align: center;
+  padding: 60px;
+  margin: 0;
+
+}
+.box{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1em;
+  font-weight: 5;
+  font-style: normal;
+  text-align: center;
+  display: inline-block;
+  width: 400px;
+  height: 400px;
+}
+.box-1 {
+/* background-color: black; */
+background-color: aquamarine;
+padding: 500px;
+}
+.box-M1{
+  background-color: blue;
+  padding: 20px;
+  height: 1em;
+  width: 10em;
+  text-align: center;
+  position: relative;
+  right: 500px;
+}
+.box-M2{
+  background-color: pink;
+  padding: 30px;
+  height: 1em;
+  width: 10em;
+  text-align: center;
+  position: relative;
+  left: 700px;
+}
+.box-M3{
+  background-color: orange;
+  padding: 40px;
+  height: 1em;
+  width: 10em;
+  text-align: center;
+  position: relative;
+  right: 200px;
+}
+.box-M4{
+  background-color: rgb(45, 183, 164);
+  padding: 30px;
+  height: 1em;
+  width: 10em;
+  text-align: center;
+  position: relative;
+  left: 500px;
+}
+.box-M5{
+  background-color: yellow;
+  padding: 60px;
+  height: 1em;
+  width: 10em;
+  text-align: center;
+  position: relative;
+  right: 700px;
+}
+.box-M6{
+  background-color: blue;
+  padding: 80px;
+  height: 1em;
+  width: 10em;
+  text-align: center;
+  position: relative;
+  left: 200px;
+}
+.box-2 {
+  /* background-color: black; */
+  padding: 300px;
+  margin: 100px;
+  background-color: antiquewhite; }
+  .box-3 {
+    /* background-color: black; */
+    background-color:red;
+    padding: 500px;
+    height: 40em;
+    }
+    .box-4 {
+      /* background-color: black; */
+      background-color:pink;
+      padding: 500px;
+      }
+
+#p5-canvas-container {
+  display: block;
+  padding: 200px;
+  margin: 100px;
+  text-align: center;
+  
+  background-color: aquamarine;
+}
