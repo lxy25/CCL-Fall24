@@ -1,5 +1,5 @@
-// var w = 1000,
-//     h = 800;
+var w = 1000,
+    h = 800;
 let x, y;
 let body;
 let noiseOffset = 0;
