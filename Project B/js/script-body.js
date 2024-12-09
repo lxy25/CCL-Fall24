@@ -1,12 +1,17 @@
-var w = 1000,
-    h = 800;
-    let x, y;
+// var w = 1000,
+//     h = 800;
+let x, y;
 let body;
 let noiseOffset = 0;
 let lineIndex = 0;
 let shakeAmount = 0;
 let shakeDuration = 0;
 let shakeMaxDuration = 10;
+
+let message1Shown = false;
+let message2Shown = false;
+let message3Shown = false;
+let message4Shown = false;
 
 function drawHeart(x, y, s) {
   push();
@@ -54,32 +59,73 @@ function heartBreak(x, y, s) {
 }
 
 function preload() {
-  body = loadImage("assets/body.jpg");
+  body = loadImage("assets/fixed-body.png");
 }
 
 function setup() {
-  let canvas = createCanvas(w, h);
-  canvas.parent("p5-canvas-container");
+  let canvas = createCanvas(windowWidth/1.5, windowHeight/1.5);
+  canvas.parent("p5-body-canvas-container");
   x = width / 2;
 }
 
 function draw() {
-  background(255);
+  background(0);
   if (shakeAmount > 0) {
     let shakeX = random(-5, 5);
     let shakeY = random(-5, 5);
     translate(shakeX, shakeY);
-    shakeAmount--;
+    shakeAmount=shakeAmount-1;
+    
   }
   let size = map(sin(frameCount * 0.06), -1, 1, 28, 30);
-  image(body, 50, 0, 300, 400);
-  drawHeart(100, 60, size);
+  image(body, 400, 0, 300, 400);
+  drawHeart(450, 60, size);
   noiseOffset += 0.01;
-  heartBreak(100, 60, size);
+  heartBreak(450, 60, size);
+  
+textSize(40);
+  fill(252, 3, 3);
+  textAlign(CENTER, CENTER);
+
+  if (message1Shown) {
+    text('You are so skinny you look disgusting', width / 2, height / 2);
+  }
+  if (message2Shown) {
+    text('Uglies are not worthy of love and affection', width / 2, height / 2);
+  }
+  if (message3Shown) {
+    text('You put on too much makeup...', width / 2, height / 2);
+  }
+  if (message4Shown) {
+    text('Embrace who you are!', width / 2, height / 2);
+  }
+
 }
 function mousePressed() {
   if (lineIndex < 4) {
-    lineIndex++;
+    lineIndex=lineIndex+1;
   }
   shakeAmount = shakeMaxDuration;
+  
+   if (!message1Shown) {
+    message1Shown = true;  
+  } else if (message1Shown && !message2Shown) {
+    message1Shown = false; 
+    message2Shown = true;  
+  } else if (message2Shown && !message3Shown) {
+    message1Shown = false;
+    message2Shown = false;  
+    message3Shown = true;  
+  } else if (message3Shown && !message4Shown) {
+    message1Shown = false;
+    message2Shown = false;
+    message3Shown = false;  
+    message4Shown = true;  
+  } else {
+    message1Shown = false;
+    message2Shown = false;
+    message3Shown = false;
+    message4Shown = false;
+  }
 }
+
