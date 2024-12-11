@@ -120,6 +120,7 @@ body {
     /* background-color: black; */
     padding: 300px;
     margin: 100px;
+    height: 100vh
     /* background-color: antiquewhite; */
   }
 
@@ -145,19 +146,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100vh;
+    /* width: 100%; */
+    height: 100vh
+    width: 100vh;
+    border: 25px solid rgb(255, 217, 0);
+
   }
 
   .box-5 {
     /* background-color: black; */
-    /* background-color: pink; */
     padding: 500px;
   }
   .box-6 {
     /* background-color: black; */
     /* background-color: pink; */
-    padding: 200px;
+    padding: 60px;
   }
 
   #p5-body-canvas-container {
@@ -167,6 +170,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: aqua; */
   }
 
   #index-body {

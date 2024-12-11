@@ -4,16 +4,18 @@ let tracker
 // use distance
 let d;
 
-let w = 1000,
-  h = 800;
+let w = 800,
+  h = 600;
 let eyeSound = [];
 let noseSound = [];
 let mouthSound = [];
 let skinSound = [];
 
-let position;
-
+let positions;
 let eyeSoundPlay;
+
+let op = 255;
+let drawCircle = false;
 
 function preload() {
   eyeSound.push(loadSound('assets/EYES-canto.mp3'))
@@ -25,7 +27,7 @@ function preload() {
   noseSound.push(loadSound('assets/NOSE-indonesian.mp3'))
   noseSound.push(loadSound('assets/NOSE-spanish.mp3'))
   noseSound.push(loadSound('assets/NOSE-chinese.mp3'))
-  
+
   mouthSound.push(loadSound('assets/LIPS-mongolian.mp3'))
   mouthSound.push(loadSound('assets/LIPS-korean.mp3'))
   mouthSound.push(loadSound('assets/LIPS-spanish.mp3'))
@@ -67,7 +69,9 @@ function draw() {
   image(capture, 0, 0, w, h);
   positions = tracker.getCurrentPosition();
 
-
+  if (positions && drawCircle) {
+    drawCircleFunction(mouseX, mouseY);
+  }
   // noFill();
   // stroke(255);
   // //creates line shape around the face
@@ -108,6 +112,9 @@ function draw() {
 
 function mousePressed() {
   if (positions) {
+    drawCircle = false;
+    op = 255;
+
     let leftEyeDist = dist(mouseX, mouseY, positions[27][0], positions[27][1])
     if (leftEyeDist <= 30) {
       //GO BEYOND >
@@ -115,7 +122,7 @@ function mousePressed() {
       // if (eyeSoundPlay.isPlaying() == false) {
       //   eyeSoundPlay.play();
       // } 
-     playRandomEyeSound();
+      playRandomEyeSound();
 
     }
     let rightEyeDist = dist(mouseX, mouseY, positions[32][0], positions[32][1])
@@ -140,6 +147,9 @@ function mousePressed() {
     if (leftSkinDist <= 40) {
       playRandomSkinSound()
     }
+    if (leftEyeDist <= 30 || rightEyeDist <= 30 || noseTipDist <= 35 || leftMouthDist <= 40 || rightSkinDist <= 40 || leftSkinDist <= 40) {
+      drawCircle = true;
+    }
   }
 }
 
@@ -162,38 +172,49 @@ function mousePressed() {
     console.log("test")
   }
 
-  function playRandomEyeSound(){
-    let randomIndex= floor (random(eyeSound.length));
-    let soundToPlay= eyeSound [randomIndex];
+  function playRandomEyeSound() {
+    let randomIndex = floor(random(eyeSound.length));
+    let soundToPlay = eyeSound[randomIndex];
 
-    if (soundToPlay.isPlaying() == false){
+    if (soundToPlay.isPlaying() == false) {
       soundToPlay.play();
     }
   }
-  function playRandomNoseSound(){
-    let randomIndex= floor (random(noseSound.length));
-    let soundToPlay= noseSound [randomIndex];
+  function playRandomNoseSound() {
+    let randomIndex = floor(random(noseSound.length));
+    let soundToPlay = noseSound[randomIndex];
 
-    if (soundToPlay.isPlaying() == false){
-      soundToPlay.play();
-    }
-  }
-
-
-  function playRandomMouthSound(){
-    let randomIndex= floor (random(mouthSound.length));
-    let soundToPlay= mouthSound [randomIndex];
-
-    if (soundToPlay.isPlaying() == false){
+    if (soundToPlay.isPlaying() == false) {
       soundToPlay.play();
     }
   }
 
-  function playRandomSkinSound(){
-    let randomIndex= floor (random(skinSound.length));
-    let soundToPlay= skinSound [randomIndex];
+  function playRandomMouthSound() {
+    let randomIndex = floor(random(mouthSound.length));
+    let soundToPlay = mouthSound[randomIndex];
 
-    if (soundToPlay.isPlaying() == false){
+    if (soundToPlay.isPlaying() == false) {
       soundToPlay.play();
     }
+  }
+
+  function playRandomSkinSound() {
+    let randomIndex = floor(random(skinSound.length));
+    let soundToPlay = skinSound[randomIndex];
+
+    if (soundToPlay.isPlaying() == false) {
+      soundToPlay.play();
+    }
+  }
+
+  function drawCircleFunction(x, y) {
+    if (op > 0) {
+      op = op - 10;
+    } else {
+      op = 0;
+      drawCircle = false;
+    }
+    fill(255, op);
+    noStroke();
+    circle(x, y, 40);
   }

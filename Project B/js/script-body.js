@@ -12,6 +12,8 @@ let message1Shown = false;
 let message2Shown = false;
 let message3Shown = false;
 let message4Shown = false;
+let randomPos = [];
+let sizeText = [];
 
 function drawHeart(x, y, s) {
   push();
@@ -66,6 +68,7 @@ function setup() {
   let canvas = createCanvas(windowWidth/1.5, windowHeight/1.5);
   canvas.parent("p5-body-canvas-container");
   x = width / 2;
+  y = height / 2
 }
 
 function draw() {
@@ -86,18 +89,24 @@ function draw() {
 textSize(40);
   fill(252, 3, 3);
   textAlign(CENTER, CENTER);
+  // textAlign(horizAlign, [vertAlign],)
+textWrap (WORD);
 
   if (message1Shown) {
-    text('You are so skinny you look disgusting', width / 2, height / 2);
+    textSize(sizeText[0]);
+    text('You are so skinny you look disgusting.', 100, randomPos[0], 1000);
   }
   if (message2Shown) {
-    text('Uglies are not worthy of love and affection', width / 2, height / 2);
+    textSize(sizeText[1]);
+    text('Uglies are not worthy of love and affection!', 100, randomPos[1], 1000);
   }
   if (message3Shown) {
-    text('You put on too much makeup...', width / 2, height / 2);
+    textSize(sizeText[2]);
+    text('You put on too much makeup...', 100, randomPos[2], 600);
   }
   if (message4Shown) {
-    text('Embrace who you are!', width / 2, height / 2);
+    textSize(sizeText[3]);
+    text('If only you had a prettier face...', 100, randomPos[3], 600);
   }
 
 }
@@ -106,6 +115,11 @@ function mousePressed() {
     lineIndex=lineIndex+1;
   }
   shakeAmount = shakeMaxDuration;
+  for(let i = 0; i< 4; i++){
+    randomPos[i] = random(200,400);
+    sizeText[i] = random(30, 70);
+    
+  }
   
    if (!message1Shown) {
     message1Shown = true;  
